@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paint-App</title>
+    <link rel="stylesheet" href="paint.css">
+
+</head>
+<body>
+    <!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    </meta>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    </meta>
+    <title>Assignment</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    </meta>
+    <!-- icons cdn -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    </link>
+    <!-- font cdn -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <!-- css -->
+    <link rel="stylesheet" type="text/css" href="main.css">
+    </link>
+</head>
+
+<body>
+    <h1 class="center-2"> Paint App (Assignment)</h1>
+    <div class="container">
+        <div class="options">
+
+            <div class="box" style="background-color: rgb(140, 140, 225);">
+                <input type="color" id="shape-fill" class="opt">
+                <div class="row">
+                    <input type="checkbox" id="shape-fill-check" class="shape-fill-check">
+                    <label for="shape-fill-check">Shape Fill</label>
+                </div>
+            </div>
+
+            <div class="box" style="background-color: rgb(140, 140, 225);">
+                <div class="row">
+                    <input type="radio" id="brush" class="shapes" name="shapes" value="brush">
+                    <label for="brush"><i class="bi bi-brush"></i></label>
+
+                    <input type="radio" id="line" class="shapes" name="shapes" value="line">
+                    <label for="line"><i class="bi bi-slash"></i></label>
+
+                    <input type="radio" id="circle" class="shapes" name="shapes" value="circle">
+                    <label for="circle"><i class="bi bi-circle"></i></label>
+
+                    <input type="radio" id="rectangle" class="shapes" name="shapes" value="rectangle">
+                    <label for="rectangle"><i class="bi bi-square"></i></label>
+
+                </div>
+                <p>Shapes</p>
+            </div>
+            <div class="box" style="background-color: rgb(140, 140, 225);">
+                <input type="color" id="color" class="opt">
+                <p>Color</p>
+            </div>
+            <div class="box" style="background-color: rgb(140, 140, 225);">
+                <input type="range" id="size" class="opt" min="1" max="20" value="1">
+                <p>Size</p>
+            </div>
+            <button type="button" id="button" style="background-color: rgb(140, 140, 225);" onclick="clearBoard()">Clear<br />Board</button>
+            <button type="button" style="background-color: rgb(140, 140, 225);" id="save"><i class="bi bi-save"></i><br/>Save</button>
+        </div>
+        <canvas class="board" id="board"></canvas>
+    </div>
+    <p class="end">I'm a learner. I make this App as a class assignment</p>
+    <script src="./paint.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+    <script>
+
+        canvas.addEventListener("touchstart", function (event) {
+           event.preventDefault();
+           cDrawing = true;
+           let coordinates = getCoordinates(event.touches[0]);
+           finalOffsetX = coordinates.x;
+           finalOffsetY = coordinates.y;
+         });
+
+         canvas.addEventListener("touchmove", function (event) {
+           event.preventDefault();
+           if (cDrawing) {
+             let coordinates = getCoordinates(event.touches[0]);
+             cObject.beginPath();
+             cObject.moveTo(finalOffsetX, finalOffsetY);
+             cObject.lineTo(coordinates.x, coordinates.y);
+             cObject.stroke();
+             finalOffsetX = coordinates.x;
+             finalOffsetY = coordinates.y;
+             cObject.strokeStyle = colors.value;
+             cObject.lineWidth = lineWidth.value;
+           }
+         });
+
+         canvas.addEventListener("touchend", function () {
+           cDrawing = false;
+         });
+
+         //get by youtube help
+
+         function getCoordinates(touch) {
+           let rect = canvas.getBoundingClientRect();
+           return {
+             x: touch.clientX - rect.left,
+             y: touch.clientY - rect.top,
+           };
+         }
+    </script>
+
+</body>
+</body>
+</html>
